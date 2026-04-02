@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/style.css"></head>
+<body>
+    <nav class="navbar">
+        <div class="logo">DCI<span>STUDIOS</span></div>
+        <a href="/" class="btn-cool">← Back</a>
+    </nav>
+
+    <div class="article-card" style="margin-top: 40px;">
+        <span class="category-tag"><%= article.category %></span>
+        <h1 style="font-size: 2.5rem; margin: 15px 0;"><%= article.title %></h1>
+        <div style="color: var(--subtext); margin-bottom: 20px;">
+            By <strong><%= article.author %></strong> | <%= article.location %>
+        </div>
+        <hr style="border: 0.5px solid #333; margin: 20px 0;">
+        <div style="line-height: 1.8; font-size: 1.1rem;">
+            <%- htmlContent %>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/style.css"></head>
+<body>
+    <div class="navbar">
+        <div style="font-size: 1.5rem; font-weight: bold;">DCI<span style="color:var(--blurple)">STUDIOS</span></div>
+        <a href="/login" class="btn-cool">Staff Login</a>
+    </div>
+    <div style="padding: 20px;">
+        <% if (articles.length === 0) { %>
+            <div class="article-card" style="text-align: center; padding: 40px;">
+                <h2 style="color: #949ba4;">No articles found.</h2>
+                <p style="color: #666;">Think this is a mistake? Contact our team at <a href="mailto:news@dcistudios.xy" style="color: var(--blurple);">news@dcistudios.xy</a></p>
+            </div>
+        <% } else { %>
+            <% articles.forEach(article => { %>
+                <div class="article-card">
+                    <span class="category-tag"><%= article.category %></span>
+                    <h2><%= article.title %></h2>
+                    <p style="color: #949ba4;"><%= article.content.substring(0, 100) %>...</p>
+                    <a href="/article/<%= article._id %>" class="btn-cool">Read Full Report</a>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+</body>
+</html>
