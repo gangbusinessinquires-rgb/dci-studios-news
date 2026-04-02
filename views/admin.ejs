@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DCI | Admin Panel</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body style="background: #0b0e14; padding: 20px;">
+    <nav class="navbar">
+        <div class="logo">DCI<span>ADMIN</span></div>
+        <div>
+            <a href="/editor" class="btn-cool">Editor</a>
+            <a href="/admin/users" class="btn-cool" style="margin-left:10px;">Manage Staff</a>
+            <a href="/logout" style="color:#aaa; margin-left:15px; text-decoration:none;">Logout</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="article-card">
+            <h1 style="color: #5865F2;">Pending Reviews</h1>
+            <table style="width:100%; border-collapse: collapse;">
+                <tr style="background:#111;">
+                    <th style="padding:10px; text-align:left; color:#aaa;">Title</th>
+                    <th style="padding:10px; text-align:left; color:#aaa;">Status</th>
+                    <th style="padding:10px; text-align:left; color:#aaa;">Actions</th>
+                </tr>
+                <% articles.forEach(article => { %>
+                    <tr>
+                        <td style="padding:10px; border-bottom:1px solid #222; color:#eee;"><%= article.title %></td>
+                        <td style="padding:10px; border-bottom:1px solid #222;">
+                            <strong style="color: <%= article.status === 'published' ? '#4caf50' : '#ff9800' %>">
+                                <%= article.status.toUpperCase() %>
+                            </strong>
+                        </td>
+                        <td style="padding:10px; border-bottom:1px solid #222;">
+                            <% if (article.status === 'draft') { %>
+                                <form action="/api/publish/<%= article._id %>" method="POST" style="display:inline;">
+                                    <button style="color:green; border:none; background:none; cursor:pointer;">[Publish]</button>
+                                </form>
+                            <% } else { %>
+                                <form action="/api/unpublish/<%= article._id %>" method="POST" style="display:inline;">
+                                    <button style="color:orange; border:none; background:none; cursor:pointer;">[Unpublish]</button>
+                                </form>
+                            <% } %>
+                            <a href="/edit/<%= article._id %>" style="color:#5865F2; border:none; background:none; cursor:pointer; margin-right:8px;">[Edit]</a>
+                        <form action="/api/delete/<%= article._id %>" method="POST" style="display:inline;" onsubmit="return confirm('Delete this article?')">
+                                <button style="color:red; border:none; background:none; cursor:pointer;">[Delete]</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

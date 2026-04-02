@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/style.css">
+    <title>DCI | Edit Article</title>
+</head>
+<body style="padding: 20px; background: #0b0e14;">
+    <nav class="navbar">
+        <div class="logo">DCI<span>STUDIOS</span></div>
+        <a href="/editor" class="btn-cool">Back to Editor</a>
+        <% if (user && user.role === 'admin') { %>
+            <a href="/admin" class="btn-cool" style="margin-left:10px;">Admin Panel</a>
+        <% } %>
+        <a href="/logout" style="color:#aaa; margin-left:15px; text-decoration:none;">Logout</a>
+    </nav>
+
+    <div class="article-card">
+        <h2 style="color: #5865F2;">✏️ Edit Article</h2>
+        <form action="/edit/<%= article._id %>" method="POST">
+            <label>Article Title</label>
+            <input type="text" name="title" value="<%= article.title %>" required>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <label>Category</label>
+                    <select name="category">
+                        <option <%= article.category === 'Breaking' ? 'selected' : '' %>>Breaking</option>
+                        <option <%= article.category === 'Update' ? 'selected' : '' %>>Update</option>
+                        <option <%= article.category === 'Tech & Business Acquisition' ? 'selected' : '' %>>Tech & Business Acquisition</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Author Display Name</label>
+                    <input type="text" name="author" value="<%= article.author %>">
+                </div>
+            </div>
+
+            <label>Content (Markdown Supported)</label>
+            <textarea name="content" rows="15"><%= article.content %></textarea>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                <button type="submit" name="status" value="draft" class="btn-cool" style="width:100%; background:#FEE75C; color:#000;">💾 Save as Draft</button>
+                <button type="submit" name="status" value="published" class="btn-cool" style="width:100%;">🚀 Publish</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

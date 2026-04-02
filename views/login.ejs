@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DCI | Staff Login</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: #0b0e14;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .login-wrapper {
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
+        }
+        .brand {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .brand h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 2px;
+        }
+        .brand h1 span { color: #5865F2; }
+        .brand p {
+            color: #555;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .card {
+            background: #13161e;
+            border: 1px solid #1e2130;
+            border-radius: 12px;
+            padding: 35px;
+        }
+        .error {
+            background: rgba(237, 66, 69, 0.1);
+            border: 1px solid rgba(237, 66, 69, 0.3);
+            color: #ed4245;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            color: #8b8fa8;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        input {
+            width: 100%;
+            background: #0b0e14;
+            border: 1px solid #1e2130;
+            border-radius: 6px;
+            padding: 12px 14px;
+            color: #fff;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+        input:focus { border-color: #5865F2; }
+        input::placeholder { color: #3a3d4a; }
+        button {
+            width: 100%;
+            background: #5865F2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 13px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: background 0.2s;
+        }
+        button:hover { background: #4752c4; }
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #3a3d4a;
+            font-size: 0.8rem;
+        }
+        .footer a { color: #5865F2; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="brand">
+            <h1>DCI<span>NEWS</span></h1>
+            <p>Staff Portal</p>
+        </div>
+
+        <div class="card">
+            <% if (locals.error) { %>
+                <div class="error">⚠ <%= error %></div>
+            <% } %>
+
+            <form action="/login" method="POST">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter your username" required autofocus>
+
+                <label>Password</label>
+                <input type="password" name="password" placeholder="••••••••" required>
+
+                <button type="submit">Sign In →</button>
+            </form>
+        </div>
+
+        <div class="footer">
+            <a href="/">← Back to DCI News</a>
+        </div>
+    </div>
+</body>
+</html>
