@@ -157,5 +157,5 @@ app.post('/admin/users/delete/:id', requireAdmin, async (req, res) => {
 
 // --- PTERODACTYL PORT ---
 
-const PORT = process.env.SERVER_PORT || 80;
+const PORT = process.env.SERVER_PORT || 9016;
 app.listen(PORT, '0.0.0.0', () => console.log(`🚀 Node Live on ${PORT}`));
